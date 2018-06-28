@@ -26,7 +26,7 @@ public class BaseTest {
     @Rule
     public JunitListener junitListener;
     public WebDriver driver;
-    public HerokuAppMainPage     homePage;
+    public HerokuAppMainPage homePage;
 
     public BaseTest() {
         junitListener = new JunitListener();
