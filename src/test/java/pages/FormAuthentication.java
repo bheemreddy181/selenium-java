@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,14 +15,6 @@ public class FormAuthentication {
     private Map<String, String> data;
     private WebDriver driver;
     private int timeout = 15;
-
-    @FindBy(css = "a[href='http://elementalselenium.com/']")
-    @CacheLookup
-    private WebElement elementalSelenium;
-
-    @FindBy(css = "a[href='https://github.com/tourdedave/the-internet']")
-    @CacheLookup
-    private WebElement forkMeOnGithub;
 
     @FindBy(css = "button.radius")
     @CacheLookup
@@ -53,6 +46,7 @@ public class FormAuthentication {
     public FormAuthentication(WebDriver driver) {
         this();
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public FormAuthentication(WebDriver driver, Map<String, String> data) {
@@ -63,26 +57,6 @@ public class FormAuthentication {
     public FormAuthentication(WebDriver driver, Map<String, String> data, int timeout) {
         this(driver, data);
         this.timeout = timeout;
-    }
-
-    /**
-     * Click on Elemental Selenium Link.
-     *
-     * @return the FormAuthentication class instance.
-     */
-    public FormAuthentication clickElementalSeleniumLink() {
-        elementalSelenium.click();
-        return this;
-    }
-
-    /**
-     * Click on Fork Me On Github Link.
-     *
-     * @return the FormAuthentication class instance.
-     */
-    public FormAuthentication clickForkMeOnGithubLink() {
-        forkMeOnGithub.click();
-        return this;
     }
 
     /**
@@ -182,6 +156,14 @@ public class FormAuthentication {
     public FormAuthentication setUsernameTextField(String usernameValue) {
         username.sendKeys(usernameValue);
         return this;
+    }
+
+    public FormAuthentication login (String userName, String password) {
+        setUsernameTextField(userName);
+        setPassword1SearchField(password);
+        clickLoginButton();
+        return this;
+
     }
 
     /**

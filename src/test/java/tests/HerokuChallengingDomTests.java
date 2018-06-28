@@ -20,14 +20,6 @@ public class HerokuChallengingDomTests extends BaseTest{
 
     @Test
     @Category(Regression.class)
-    public void testNavigationLink() {
-        homePage.clickChallengingDomLink();
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("challenging_dom"));
-    }
-
-    @Test
-    @Category(Regression.class)
     public void testTableHandling()  {
 
         homePage.clickChallengingDomLink();
